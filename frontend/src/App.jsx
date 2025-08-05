@@ -18,6 +18,8 @@ import ProductEdit from './components/admin/ProductEdit'
 import AdminDashboard from '/src/pages/admin/AdminDashboard'
 
 import Unauthorizedpages from './pages/admin/Unauthorizedpages'
+import About from './pages/About'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
    
   } 
     />
+    <Route path='/about' element={<About/>}/>
   <Route path='/login' element={
     <GuestRoute>
          <Login/>
@@ -84,6 +87,7 @@ function App() {
 
   
  </Routes>
+ <Footer/>
  </BrowserRouter>
  
  </>
