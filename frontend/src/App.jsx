@@ -21,6 +21,7 @@ import Unauthorizedpages from './pages/admin/Unauthorizedpages'
 import About from './pages/About'
 import Footer from './components/Footer'
 import Store from './pages/Store'
+import Profile from "./components/ui/Profile";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
     />
     <Route path='/about' element={<About/>}/>
     <Route path='/store' element={<Store/>}/>
+    <Route path='/profile'element={<Profile/>}/>
   <Route path='/login' element={
     <GuestRoute>
          <Login/>
