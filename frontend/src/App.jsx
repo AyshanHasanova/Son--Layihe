@@ -20,6 +20,7 @@ import AdminDashboard from '/src/pages/admin/AdminDashboard'
 import Unauthorizedpages from './pages/admin/Unauthorizedpages'
 import About from './pages/About'
 import Footer from './components/Footer'
+import Store from './pages/Store'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
   } 
     />
     <Route path='/about' element={<About/>}/>
+    <Route path='/store' element={<Store/>}/>
   <Route path='/login' element={
     <GuestRoute>
          <Login/>

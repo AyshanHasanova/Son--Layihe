@@ -78,12 +78,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to="/store"
             className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500"
           >
-            Services
-          </a>
+            Store
+          </Link>
         </li>
         <li>
           <a
