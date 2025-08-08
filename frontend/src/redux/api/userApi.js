@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1", credentials: "include" }),
@@ -10,7 +11,6 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-
     register: builder.mutation({
       query: (data) => ({
         url: "/register",
@@ -18,26 +18,39 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-     logout: builder.mutation({
+    logout: builder.mutation({
       query: () => ({
         url: "/logout",
         method: "GET",
         credentials: "include", // cookie də getsin!
       }),
-
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          // logoutdan sonra `getUserProfile`-in cache-i sıfırlansın
           dispatch(userApi.util.resetApiState());
         } catch (err) {
           console.error("Logout failed:", err);
         }
       },
     }),
-
-   getUserProfile: builder.query({
+    getUserProfile: builder.query({
       query: () => "/me",
+    }),
+    resetPassword: builder.mutation({
+      query: ({ token, password, confirmPassword }) => ({
+        url: `/password/reset/${token}`,
+        method: "PUT",
+        body: { password, confirmPassword },
+      }),
+    }),
+    // Düzəldilmiş forgotPassword mutation
+    // Artıq `body: data` olaraq birbaşa obyekt göndəririk
+    forgotPassword: builder.mutation({
+      query: (data) => ({ 
+        url: "/password/forget", // "forgot" --> "forget" ilə dəyişdirildi
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
@@ -47,4 +60,6 @@ export const {
   useRegisterMutation,
   useLogoutMutation,
   useGetUserProfileQuery,
+  useResetPasswordMutation,
+  useForgotPasswordMutation, // Yeni hook'u export edirik
 } = userApi;
